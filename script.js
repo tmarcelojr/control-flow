@@ -20,13 +20,14 @@ Can contain zero or more statements.
 
 */
 
-// Blocked Scope
+// global
 let a = 10;
 let b = 5;
 
+// Blocked Scope
 {
     let c = a + b;
-    // console.log(c);
+    // console.log(c); // 15
 }
 
 // This will return 15 in the web console. Notice how things inside curly braces are being ran by JS. Take note that this will change with future syntax.
@@ -75,23 +76,26 @@ Create var, let, or const variables in the web console. Use window. to look for 
     var d = 1;
     {
       var d = 2;  // same variable!
-    //   console.log(d);
+    //   console.log(d); // 2
     }
-    // console.log(d);
+    // console.log(d); // 2
 }
 
-// Note: 
+// Note: DO NOT USE VAR. It will save the variable in the global scope. 
 
 {
     let e = 1;
     {
         let e = 2;  // different variable
-        // console.log(e);
+        // console.log(e); // 2
     }
     // console.log(e);
 }
 
-// Note: 
+// Note: This is why people use let and const to block assesibility and reusability of variable names
+
+// let e = 'hello'
+// let e = 'goodbye'
 
 // ===== PRACTICE =====
 
@@ -101,9 +105,9 @@ let f = 10;
     let g = 15;
     {
         const h = f + g;
-        // console.log(h); // ??
+        // console.log(h); // 25
     }
-    // console.log(h); // ??
+    // console.log(h); // ?? ReferenceError: h is not defined
 }
 
 // ===== HARD PRACTICE =====
@@ -118,11 +122,13 @@ var c = "I can feel the sun whenever you're near";
         const b = 'I can see the stars all the way from here';
         {
             var c = "Can't you see the glow on the window pane?"
-            // console.log(`${a} ${b} ${c} ${c} ${d}`);
+            // console.log(`${a} ${b} ${c} ${c} ${d}`); // string interpolation
         }
     }
     var d = "Every time you touch me I just melt away";
 }
+
+// console.log(d)
 
 // ===== CONTROL FLOW AND CONDITIONALS =====
 
@@ -149,9 +155,12 @@ if(true) {
     // console.log('Did we make it here?');
 } else {
     // do something
-    // console.log('Nope, you are on the other side.');
+    console.log('Nope, you are on the other side.');
 };
 
+// true && true
+// == compares two values and will do data type coercion
+// === compares two values and it's data type
 if(10 > 3 && 6 == '6') {
     // console.log('YES');
 } else {
@@ -170,8 +179,26 @@ if(!true) {
 
 const firstName = 'Bob';
 
-if(firstName === 'Bob') {
+// 'Bob' === 'Bob'
+
+// Print Yes, Bob. on the screen, by changing our conditional statement. 
+// Without changing the values of firstName and 'bob' and keeping the strictly equality sign
+
+// FIRST solution
+// 'Bob' => 'bob === 'bob'
+if(firstName.toLowerCase() === 'bob') {
     // console.log('Yes, Bob.');
+}
+
+// SECOND solution
+// !(false)
+if(!(firstName === 'bob')) {
+    // console.log('Yes, Bob.');
+}
+
+// THIRD solution
+if(typeof firstName === typeof 'bob') {
+    // console.log('Yes, Bob.')
 }
 
 // Omitting the curly braces: Reads the next statement only. Adding more statements will break code.
@@ -179,9 +206,10 @@ if(firstName === 'Bob') {
 const num = 10;
 
 // if(num > 10)
-//     console.log('Higher!');
+    // console.log('Higher!');
 // else
-//     console.log('Lower');
+    // console.log('Lower');
+
 
 // Another popular way for single conditional if statement
 // if(true) console.log('YEAH!');
@@ -194,6 +222,7 @@ const num = 10;
 
 // JavaScript Type Coercion Explained
 // https://www.freecodecamp.org/news/js-type-coercion-explained-27ba3d9a2839/
+// https://www.freecodecamp.org/news/coercion-and-type-conversion-in-javascript/
 
 // JavaScript Equality Table
 // https://dorey.github.io/JavaScript-Equality-Table/
@@ -217,24 +246,30 @@ if (-42) {}
 if (Infinity) {}
 
 // Uncomment below code
+// let myVariable;
+// console.log(myVariable)
 
 // if (myVariable) {
 // 	// if myVariable is undefined, it is treated as falsy
+//     console.log('first')
 // }
 
 // // instead of this: results in TRUTHY
-// if (typeof myVariable === "undefined") {}
+if (typeof myVariable === "undefined") {
+    // console.log('WE DID IT')
+}
 
 // ===== PRACTICE =====
 
 /* 
 
-Declare a variable called num.
+Declare a variable called numAccess.
 Write a conditional statement that checks if the num is positive or negative.
 
 Now create another conditional statement as if you were tasked with setting up the security for a web site that only grants access to users over the age of 18, how would you write a conditional that gives users who are 18 or older access, and logs "Access Denied" for users who do not meet the given condition?
 
 */
+
 
 // ===== NESTED IF...ELSE =====
 
@@ -246,14 +281,32 @@ if (true) {
 		// do this
 	} else {
 		// do this
+        if(true) {
+            // do something
+        }
 	}
+
+    // do something here
 } else {
 	//do this
 }
 
+// ELSE IF STATEMENTS
+/* 
+
+if(condition one){
+    // do this
+} else if (condition two) {
+    // do this
+} else {
+    // do this
+}
+
+*/
+
 // Discuss IF/ELSE IMAGE in LESSON.
 
-const money = 0;
+const money = 10;
 
 if (money >= 10) {
 	//do this
@@ -270,7 +323,7 @@ if (money >= 10) {
 
 /* 
 
-Write a nested if...else statement.
+Write a if...else statement.
 Declare a variable called numOne.
 In each statement, log a sentence that makes sense with the condition.
 Add an if...else statement that checks if numOne is positive & greater than 100.
@@ -279,6 +332,8 @@ Add a final statement to check if numOne is negative.
 Close out with an else statement saying numOne is not a number.
 
 */
+
+
 
 /* 
 
@@ -292,23 +347,30 @@ Any grade lower than 55: console.log("F")
 
 */
 
+
+
+
 // ===== SWITCH STATEMENTS =====
 
 // The switch statement evaluates an expression, matching the expression's value to a case clause, and executes statements associated with that case, as well as statements in any case that follows the matching case.
 
 // Syntax
 let value = '0';
-switch (value) {
-   case '0':
-       // do something...
-       break;
-   case '2':
-       // do something...
-       break;
-   default:
-       // do something...
-       break;
-}
+
+// switch (value) {
+//    case '0':
+//        // do something...
+//        console.log('We got a zero!');
+//        break;
+//    case '2':
+//        // do something...
+//        console.log('We got a two!');
+//        break;
+//    default:
+//        // do something...
+//        console.log('BEEP BEEP');
+//        break;
+// };
 
 // BREAKDOWN
 /* 
@@ -325,24 +387,24 @@ The default keyword is like the else statement. Best practice is to always use t
 
 let num1 = 5;
 let num2 = 4;
-let operand = "*";
+let operand = "%";
 
-// switch (operand) {
-//    case "+":
-//        console.log(num1 + num2);
-//        break;
-//    case "-":
-//        console.log(num1 - num2);
-//        break;
-//    case "*":
-//        console.log(num1 * num2);
-//        break
-//    case "/":
-//        console.log(num1 / num2);
-//        break;
-//    default:
-//        console.log("Invalid Operand")
-//         // break keyword is not needed in the default case; it depends on the programmer.
-//        break;
-// };
+switch (operand) {
+   case "+":
+       console.log(num1 + num2);
+       break;
+   case "-":
+       console.log(num1 - num2);
+       break;
+   case "*":
+       console.log(num1 * num2);
+       break
+   case "/":
+       console.log(num1 / num2);
+       break;
+   default:
+       console.log("Invalid Operand")
+        // break keyword is not needed in the default case; it depends on the programmer.
+       break;
+};
 
