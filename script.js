@@ -407,4 +407,3 @@ switch (operand) {
         // break keyword is not needed in the default case; it depends on the programmer.
        break;
 };
-
